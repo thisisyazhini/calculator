@@ -1,23 +1,79 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [givenInput, transformInput] = useState("");
+  const buttonHandler = (event) => {
+    if (event.target.value === "=") {
+      transformInput(eval(givenInput));
+    } else if (/[0-9]/.test(givenInput)) {
+      transformInput(givenInput + event.target.value.toString());
+    } else {
+      transformInput(event.target.value);
+    }
+  };
+  const clearInput = (event) => {
+    transformInput("");
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="card">
+      <div className="display">
+        <input type="text" value={givenInput} />
+      </div>
+      <div className="row">
+        <button onClick={buttonHandler} value="1">
+          1
+        </button>
+        <button onClick={buttonHandler} value="2">
+          2
+        </button>
+        <button onClick={buttonHandler} value="3">
+          3
+        </button>
+        <button onClick={buttonHandler} value="+">
+          +
+        </button>
+      </div>
+      <div className="row">
+        <button onClick={buttonHandler} value="4">
+          4
+        </button>
+        <button onClick={buttonHandler} value="5">
+          5
+        </button>
+        <button onClick={buttonHandler} value="6">
+          6
+        </button>
+        <button onClick={buttonHandler} value="-">
+          -
+        </button>
+      </div>
+      <div className="row">
+        <button onClick={buttonHandler} value="7">
+          7
+        </button>
+        <button onClick={buttonHandler} value="8">
+          8
+        </button>
+        <button onClick={buttonHandler} value="9">
+          9
+        </button>
+        <button onClick={buttonHandler} value="*">
+          *
+        </button>
+      </div>
+      <div className="row">
+        <button onClick={clearInput}>C</button>
+        <button onClick={buttonHandler} value="0">
+          0
+        </button>
+        <button onClick={buttonHandler} value="=">
+          =
+        </button>
+        <button onClick={buttonHandler} value="/">
+          /
+        </button>
+      </div>
     </div>
   );
 }
