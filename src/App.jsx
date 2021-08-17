@@ -2,12 +2,12 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [givenInput, transformInput] = useState("");
+  const [input, transformInput] = useState("");
   const buttonHandler = (event) => {
     if (event.target.value === "=") {
-      transformInput(eval(givenInput));
-    } else if (/[0-9]/.test(givenInput)) {
-      transformInput(givenInput + event.target.value.toString());
+      transformInput(eval(input));
+    } else if (/[0-9]/.test(input)) {
+      transformInput(input + event.target.value.toString());
     } else {
       transformInput(event.target.value);
     }
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="card">
       <div className="display">
-        <input type="text" value={givenInput} />
+        <input type="text" value={input} />
       </div>
       <div className="row">
         <button onClick={buttonHandler} value="1">
